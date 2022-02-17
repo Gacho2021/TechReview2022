@@ -1,1 +1,59 @@
+create table "location"
+ (
+ locationkey serial primary key,
+	 locationname text not null,
+	 locationaddress text not null,
+	 locationcity text default 'Seattle',
+	 locationstate char(2) default 'WA',
+	 locationphone text not null,
+	 locationemail text null unique,
+	 locationurl text null
+ );
+ 
+  create table "Seminar"
+	(
+	seminarKey serial primary key,
+		locationKey text not null,
+		seminartheme text not null,
+		seminardescription text not null,
+	);
+create table "seminardetails"
+ (
+ seminardetail text serial,
+	 seminarKey textt not null,
+	 seminardetailtopic text not null,
+	seminardetailpresenttime time,
+	 seminardetailsroom char(5),
+	 instructorkey text not null,
+	 seminardetaildescription text null,
+ );
 
+Alter table seminardetails
+add primary key(seminardetailkey);
+
+Alter table seminardetails
+add constriant fk seminar foreign key (saminarkey)
+references "seminar" (seminarkey);
+
+create table "attendance"(
+attendancekey seriial primary Key,
+	attendanceseminardetailkey not null,
+	attendancepersonkey not null,
+);
+
+Alter table person
+add newsletter boolean default true;
+
+Alter table roster add constraint chkgrade check(finalgrade between 0 and 4); 
+
+select * from person;
+create temp table emailemp
+(
+insert into emailtemp(personlastname, personfirstname, personemail)
+select personlastname, personfirstname from person;
+
+)
+Alter table roster add constraint chkgrade check(finalgrade) is null; 
+
+Alter table person
+Drop column newsletter;
